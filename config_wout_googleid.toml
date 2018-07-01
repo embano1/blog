@@ -1,0 +1,53 @@
+BaseUrl= "https://embano1.github.io/"
+LanguageCode= "en-US"
+Title= "Do not go gentle into this good night. Rage."
+paginate = 5
+Copyright = "All rights reserved - 2017"
+canonifyurls = true
+theme = "casper"
+
+[params]
+  # description = "Thoughts of a lost mind."
+  # metadescription = "Used as 'description' meta tag for both home and index pages. If not set, 'description' will be used instead"
+  cover = "none.jpg"
+  author = "Michael Gasch"
+  authorlocation = "Germany"
+  # authorwebsite = "http://vjeantet.fr"
+  # authorbio= "my bio"
+  logo = "images/gopher.jpg"
+  # googleAnalyticsUserID = "XXXXXXXXXXXXX"
+  # Optional RSS-Link, if not provided it defaults to the standard index.xml
+  # RSSLink = "http://feeds.feedburner.com/..."
+  githubName = "embano1"
+  twitterName = "embano1"
+  #disqusShortname = "embano1"
+  # facebookName = ""
+  # linkedinName = ""
+  # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
+  hideHUGOSupport = true
+  
+  # Setting a value will load highlight.js and enable syntax highlighting using the style selected.
+  # See https://github.com/isagalaev/highlight.js/tree/master/src/styles for available styles
+  # A preview of above styles can be viewed at https://highlightjs.org/static/demo/
+  hjsStyle = "ocean"
+
+  [params.social]
+    twitter = "embano1"
+
+[[menu.main]]
+  name = "Blog"
+  weight = -120
+  identifier = "post"
+  url = "/post"
+
+#[[menu.main]]
+#  name = "Explore more"
+#  weight = -130
+#  identifier = "explore"
+#  url = "/explore"
+
+[[menu.main]]
+  name = "About me"
+  weight = -110
+  identifier = "about"
+  url = "/about"
