@@ -3,6 +3,9 @@ title: "QoS, \"Node allocatable\" and the Kubernetes Scheduler"
 date: 2017-10-17T22:04:27+02:00
 draft: false
 excerpt: "Answering a customer question about why \"Allocatable\" resources (CPU, MEM) on the Kubelet would not be reduced when he starts pods with QoS guarantees. This is a deep dive in the Kubernetes scheduler... [continue to read]"
+tags: 
+- Kubernetes
+- Scheduling
 ---
 
 What a title, sorry for that...Weeks ago, I started a post about a customer question which came up during a workshop. I just didn´t find the time to finish it, because of ... other stuff.  Also a BIG thanks to my Twitter fellows @bbrundert, @mhausenblas and @timoreimann for their review and feedback to improve this post. Make sure to follow them! 

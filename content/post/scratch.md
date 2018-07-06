@@ -3,6 +3,10 @@ title: "Inside Docker's \"FROM scratch\""
 date: 2017-11-21T21:18:04+01:00
 draft: false
 excerpt: "Statically compiled languages, like Go, are quiet popular these days. In combination with another blockbuster technology, Docker containers, a big advantage is the minimal size of the resulting container image. This can be achieved by using the special Docker \"scratch\" image. But how does it look like inside \"FROM scratch\"? [continue to read]"
+tags:
+- Docker
+- Container
+- Scratch
 ---
 
 The idea to this post was triggered by Julia Evans "So you want to be a wizard"...

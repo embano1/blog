@@ -3,6 +3,10 @@ title: "Kubernetes and the fine art of scaling - UP!"
 date: 2017-07-31T22:17:38+02:00
 draft: false
 excerpt: "Distributed runtime (i.e. Kubernetes) optimization. The idea was mainly about day two operations for distributed systems written for and running on Kubernetes. We were mainly interested in how the platform can optimize the applications (services) it hosts. [continue to read]"
+tags:
+- Resources
+- Scheduling
+- Autoscaling
 ---
 
 Do you know these days, when a certain topic you have thought about a while hits you again and again? 

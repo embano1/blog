@@ -3,6 +3,11 @@ title: "Understanding and using the Kubernetes PodNodeSelector Admission Control
 date: 2018-01-24T21:41:06+01:00
 draft: false
 excerpt: "During a recent customer engagement, a discussion about Kubernetes `NodeSelectors` came up. There was some confusion about whether and how to use them for a multi-tenant cluster deployment. In the end, we decided to leverage the Kubernetes `PodNodeSelector` admission controller."
+tags:
+- Kubernetes
+- Labels
+- Admission
+- Scheduling
 ---
 
 *Thanks to [Timo Reimann](https://twitter.com/timoreimann), [Bjoern Brundert](https://twitter.com/bbrundert) and [Tom Schwaller](https://twitter.com/tom_schwaller) for their feedback and improving this post.*
