@@ -8,7 +8,7 @@ tags:
 - JSON
 ---
 
-<img src="https://cdn.vox-cdn.com/thumbor/kA-ikIyInItp2OuWG_dd1PfrFo4=/0x16:2200x1483/1820x1213/filters:focal(0x16:2200x1483):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/47574011/twitter-hearts-and-stars.0.0.png" width="80" title="Source: The Verge"></img>
+<img src="/images/twitter-hearts-and-stars.png" width="80" title="Source: The Verge"></img>
 
 I confess, I've been (mis)using Twitter's famous *Like* button since joining this great platform. Thus, if you look at my <a href="https://twitter.com/embano1/likes" target="_blank">Twitter Likes</a> you'll mainly find tweets about distributed systems, Go and Kubernetes.
 
