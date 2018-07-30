@@ -1,1 +1,1 @@
-Hugo configuration files for the blog under http://embano1.github.io
+Hugo configuration files for the blog under https://www.mgasch.com
