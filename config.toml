@@ -14,7 +14,7 @@ theme = "casper"
   authorlocation = "Germany"
   # authorwebsite = "http://vjeantet.fr"
   # authorbio= "my bio"
-  logo = "images/gopher.jpg"
+  logo = "/images/gopher.jpg"
   googleAnalyticsUserID = "UA-108156810-1"
   # Optional RSS-Link, if not provided it defaults to the standard index.xml
   # RSSLink = "http://feeds.feedburner.com/..."
