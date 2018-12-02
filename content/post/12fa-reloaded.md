@@ -38,9 +38,13 @@ The customer told me about the challenges to properly get NFS and Kerberos runni
 
 To overcome these problems in the container world, they were thinking about statically injecting UIDs/GIDs, *HostPath* mounts, taints and tolerations (to just run one JBoss instance on each kubelet), etc. None of them really worked, being hard to implement (scripts) or had several security flaws. 
 
-This whole discussion reminded me of an article Kelsey Hightower wrote in 2015: [12 Fractured Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c). If you haven't read it, please do so. It basically comes down to first trying to solve the problem of containerizing a "legacy" application with scripting magic around the container. And then Albert ehm Kelsey explains how to do it right: Fix the app :)
-
 **Note:** If you search Google for "NFS, Docker and Kerberos" you'll find many blog posts (like [this](https://whyistheinternetbroken.wordpress.com/2018/08/16/securing-nfs-mounts-in-a-docker-container/) great writeup) or forum entries how to do it. I am not saying it can't be done (BASH FTW). All I'm saying is that perhaps there's a cleaner and more future-proof approach 😄.
+
+This whole discussion reminded me of an article Kelsey Hightower wrote in 2015: [12 Fractured Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c). If you haven't read it, please do so. It basically comes down to first trying to solve the problem of containerizing a "legacy" application with scripting magic around the container. And then Albert ehm Kelsey explains how to do it right: Fix the app by following the best practices in the *Twelve-Factor App Manifesto* 😄.
+
+> *In the modern era, software is commonly delivered as a service: called web apps, or software-as-a-service. The twelve-factor app is a methodology for building software-as-a-service apps [...]. The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc).*
+>  
+> [The Twelve-Factor App](https://12factor.net/)
 
 After I showed them Kelsey's article, they were pretty open to other solutions. So we talked about decoupling the JBoss instances from the shared storage system by taking an *event-driven* approach. Fortunately the architects knew of this architectural pattern and we came up with a simple, yet elegant solution for the problem.
 
@@ -62,14 +66,16 @@ The customer immediately understood the benefits of this approach:
 - Everything is based on standard TCP/IP communication (mostly HTTP/TLS), i.e. no ugly hacks to get NFS and Kerberos working in the container
 - The design allows for horizontal scaling (pre/post-processors, queues, producers/consumers) since we're preventing locking issues which are intrinsic to shared storage environments like NFS/SMB
 - The design can be applied in almost any environment (cloud/on-premises) as it's based on fully decoupled and standardized building blocks (portability)
-- Most importantly, no trouble containerizing all components!
+- Most importantly, **no NFS/Kerberos needed** so now it's easy to containerize the JBoss instances!
 
-I know, I know. You must be screaming now: "YOU COPYCAT! THIS IS LAMBDA!". 
+I know, I know. Some of you might be screaming: "YOU COPYCAT! THIS LOOKS LIKE SERVERLESS AND AWS LAMBDA!". 
 
 Well, the customer still operates this environment (on-premises) and the JBoss processors are rather corse-grained as they contain a lot of business logic per instance. So no, it's not (serverless) Lambda 😉. But basically you're right. It fully embraces event-driven design and could be easily modeled with more fine-grained actors, i.e. *Functions-as-a-Service*. Full credit to the visionary folks at AWS making this mainstream (and my former colleague [Massimo](https://twitter.com/mreferre) for consantly trolling me).
 
 Of course, it goes without saying that I gave this customer my usual pitch on 
-[OpenFaaS](https://docs.openfaas.com/) to move into that direction. Kubernetes would be the underlying technology to run the various building blocks, e.g. queues, OpenFaaS and so on. Alex, my colleague and founder of OpenFaaS, is already invited for a follow-up.
+[OpenFaaS](https://docs.openfaas.com/) to move into that direction. Kubernetes would be the underlying technology to run the various building blocks, e.g. queues, OpenFaaS and so on. [Alex](https://twitter.com/alexellisuk), my colleague and founder of OpenFaaS, is already invited for a follow-up.
+
+**Note:** If you want to start playing with OpenFaaS [here](https://blog.alexellis.io/three-ways-to-learn-serverless-openfaas/) are some references to quickly get you started.
 
 What I really enjoyed during this workshop was the shining eyes of the architects when they realized the potential of this completely different approach to their NFS problem. They immediately identified other areas where this can be applied, for example to replace several hundred mostly idling (and expensive) Java EE instances in their environment.
 
