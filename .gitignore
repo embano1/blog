@@ -1,3 +1,6 @@
 *.bak*
 .DS_Store
 .vscode
+
+# we don't need public using netlify
+public
