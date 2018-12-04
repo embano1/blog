@@ -1,7 +1,3 @@
-[submodule "public"]
-	path = public
-	url = https://github.com/embano1/embano1.github.io
-	branch = master
 [submodule "themes/osprey"]
 	path = themes/osprey
 	url = https://github.com/tomanistor/osprey.git
