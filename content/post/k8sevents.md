@@ -15,7 +15,7 @@ The following diagram from the Kubernetes docs shows the various components. You
 
 <center>![Kubernetes Architecture - Source: Kubernetes.io](/images/k8s-arch.png)</center>
 
-The downside is that such a microservices based architecture always comes with a steep learning curve. But this knowledge is critical for both, developers and operators, maintaining Kubernetes or developing workloads on top of it. It's a distributed system par excellence. In my engagements with customers, colleagues and conferences I dedicate a lot of time going into the details of how Kubernetes works. Because across the board, there is often confusion or misunderstanding of the architecture, opening the door for unnecessary discussions or, even worse, and failure. 
+The downside is that such a microservices based architecture always comes with a steep learning curve. But this knowledge is critical for both, developers and operators, maintaining Kubernetes or developing workloads on top of it. It's a distributed system par excellence. In my engagements with customers, colleagues and conferences I dedicate a lot of time going into the details of how Kubernetes works. Because across the board, there is often confusion or misunderstanding of the architecture, opening the door for unnecessary discussions or, even worse, failure. 
 
 > *"If you cannot explain something in simple terms, you don't understand it."*
 >
@@ -45,14 +45,14 @@ Consumers specify the objects (and optionally namespace) they want to receive ev
 
 Consumers and producers don't know about each other as they're fully decoupled (by the queue) and autonomous. This makes the whole system extremely scalable, robust and extensible (adaptable to change).
 
-Thus, by design, it's a fully *asynchronous and eventual consistent* platform. Information takes time to propagate from producers(s) to consumers(s). The diagram shows this where the Horizontal Pod Autoscaler hasn't caught up with the events coming from the metrics server, which also affects the downstream chain of producers and consumers.
+Thus, by design, it's a fully *asynchronous and eventually consistent* platform. Information takes time to propagate from producers(s) to consumers(s). The diagram below shows this where the Horizontal Pod Autoscaler hasn't caught up with the events coming from the metrics server, which also affects the downstream chain of producers and consumers in our example.
 
 <center>![Kubernetes API Server - Source: Kubernetes.io](/images/k8s-api-server-queues.png)</center>
 
 There's NO guarantee that the system will converge to the desired state (even if you got an "OK"/ACK from the control plane). For example: 
 
 ```bash
-$ kubectl scale <deploy> --replicas <n> (where cpu requests > cluster_capacity).
+$ kubectl scale <deploy> --replicas <n> # where sum(cpu_requests) > cluster_capacity
 Scaled deployment <deploy>
 ```
 
