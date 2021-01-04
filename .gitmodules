@@ -1,6 +1,6 @@
-[submodule "themes/osprey"]
-	path = themes/osprey
-	url = https://github.com/tomanistor/osprey.git
 [submodule "themes/casper"]
 	path = themes/casper
 	url = https://github.com/embano1/hugo-theme-casper
+[submodule "themes/uBlogger"]
+	path = themes/uBlogger
+	url = git@github.com:embano1/uBlogger
