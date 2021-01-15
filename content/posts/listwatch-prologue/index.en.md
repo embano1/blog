@@ -4,7 +4,7 @@ subtitle: ""
 date: 2021-01-15T17:28:15+01:00
 lastmod: 2021-01-15T17:28:15+01:00
 draft: false
-description: "A multi-part deep dive series into the internals of the Kubernetes ListWatch() interface"
+description: "A multi-part deep dive series into the internals of the Kubernetes ListerWatcher interface"
 page:
   theme: "classic"
 upd: ""
@@ -83,7 +83,7 @@ type ListerWatcher interface {
 }
 ```
 
-It all started with a simple question: how does `ListWatch()` work? As you see from
+It all started with a simple question: how does `ListerWatcher` work? As you see from
 this series, it turned out to be another journey into a fascinating and deep
 rabbit hole.
 
@@ -121,7 +121,7 @@ different pages and Git repositories, making it hard to get a complete picture
 of how all the pieces fit together. 
 
 So Dr. Faust, err I, decided to describe the *end-to-end flow* of the event
-notification mechanism in Kubernetes, also known as the `ListWatch()` interface
+notification mechanism in Kubernetes, also known as the `ListerWatcher` interface
 in the [controller
 SDK](https://pkg.go.dev/k8s.io/client-go@v0.20.1/tools/cache#ListWatch). 
 
@@ -135,7 +135,7 @@ specifically, how resource objects are persisted in and projected from the datab
 Thus, we will work us backwards through this rabbit hole, starting with `etcd` in the
 first part of this series. Our journey starts here...
 
-**Part 1:** To the core: etcd (coming next week)  
+**Part 1:** [Onwards to the Core: etcd]({{< relref "/posts/listwatch-part-1" >}})  
 **Part 2:** Source of Truth: The API Server  
 **Part 3:** Informers, Controllers, Reconciliation...oh my  
 
