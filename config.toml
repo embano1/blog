@@ -134,7 +134,7 @@ enable = true
 #  Custom content (HTML format is supported)
 custom = ''
 #  whether to show Hugo and theme info
-hugo = false
+hugo = true
 #  whether to show copyright info
 copyright = true
 #  whether to show the author
@@ -584,7 +584,7 @@ startLevel = 2
 # 
 
 [author]
-name = "Michael Gasch"
+name = "embano1.en"
 
 # Sitemap config
 [sitemap]
