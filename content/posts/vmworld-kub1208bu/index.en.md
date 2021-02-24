@@ -49,12 +49,12 @@ upper/lower layers involved in delivering a full software and application stack.
 
 If you are a vSphere and/or Kubernetes platform administrator (architect), you
 definitely want to understand how the different platform layers interact to
-build a scalable, robust and efficient application platform. To simplify the
+build a *scalable, robust and efficient application platform*. To simplify the
 understanding of all the moving pieces, we covered the lifecycle of a pod
-(application) in Kubernetes from a resource perspective. That includes pod
-definition, admission control, scheduling and enforcement (execution). Since
-this was a deep dive, we could also cover container internals such as Linux
-Kernel cgroups used by Kubernetes to mode resource requirements and best
+(application) in Kubernetes from resource management perspectives. That includes
+*pod definition, admission control, scheduling and enforcement* (execution). Since
+this was a deep dive, we could also cover *container internals* such as Linux
+Kernel cgroups used by Kubernetes to model resource requirements and best
 practices for aligning them with vSphere constructs (*resource
 requests/limits*). 
 

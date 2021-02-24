@@ -2,20 +2,20 @@
 title: "Onwards to the Core: etcd"
 subtitle: ""
 date: 2021-01-21T17:28:15+01:00
-lastmod: 2021-01-21T17:28:15+01:00
+lastmod: 2021-02-24T17:28:15+01:00
 draft: false
 author: ""
 description: "A journey to the core behind the Kubernetes ListerWatcher interface"
 page:
   theme: "classic"
-upd: ""
+upd: Add lecture on MVCC, minor improvements for clarity
 authorComment: ""
 tags: ["Kubernetes","Events","bolt","database","etcd","watch"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "featured-image.jpg"
 math:
   enable: false
 lightgallery: true
@@ -30,7 +30,7 @@ license: ""
 The first part of the deep dive [series]({{< relref "/posts/listwatch-prologue" >}}) 
 into the Kubernetes `ListerWatcher` interface jumps right into the core of
 Kubernetes and its default storage backend `etcd`. Kubernetes uses `etcd` as a
-distributed, strongly consistent and highly available key-value store. Based on
+distributed, strongly consistent[^consistency] and highly available key-value store. Based on
 a multi-version concurrency control (MVCC) mechanism, `etcd` allows for time
 travel queries and efficient watches (notifications) for changes in the store.
 
@@ -78,10 +78,10 @@ backend for a number of reasons.
 So, what is `etcd` anyways? To quote from the docs, `etcd` is a "*distributed,
 reliable key-value store* for the most critical data of a distributed system".
 The Kubernetes creators early on decided to use `etcd` as the underlying
-datastore, and in hindsight this decision has proven right:
+datastore, and in hindsight this decision has proven right[^beginning]:
 
-- Both projects originated at the ~same time, forming a great symbiosis for
-  infrastructure and application orchestration
+- Both projects originated at the ~same time, forming a great symbiosis over
+  time for resilient and scalable infrastructure and application orchestration
 - Like Kubernetes, `etcd` is written in Go and offers a first-class SDK
   ([clientv3](https://pkg.go.dev/go.etcd.io/etcd/clientv3))
 - `etcd` exposes a key-value store API, which is a good fit for
@@ -543,8 +543,8 @@ for Go, useful as an ordered, mutable data structure".
 
 A [B-tree](https://en.wikipedia.org/wiki/B-tree) is different from a B+ tree.
 But both data structures provide very good
-[latency](https://www.bigocheatsheet.com/) for CRUD[^crud] operations, even with huge
-tree sizes. 
+[latency](https://www.bigocheatsheet.com/) for CREATE/READ/UPDATE/DELETE (CRUD)
+operations, even with huge tree sizes. 
 
 {{</admonition >}}
 
@@ -1257,18 +1257,19 @@ what are some of the challenges arising from that?
 
 Stay nerdy and safe!
 
+[^consistency]: I am using the term "strong" loosely here to indicate strict serializability (see Consistency section in the Jepsen [report](https://jepsen.io/analyses/etcd-3.4.3))
 [^borgpaper]: [Borg, Omega and Kubernetes](https://research.google/pubs/pub44843/) 
+[^beginning]: To be clear, some of the mentioned etcd features were added later, mainly driven by Kubernetes' resiliency and performance needs though
 [^currentstate]: In a distributed system, to avoid global locks, a local observer's view must
 always be considered to be behind the global ("current") state, i.e. its view is [eventually
 consistent](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/resource-management.md#declarative-control).
 [^jepsen]: Jepsen etcd 3.4.3 [analysis](https://jepsen.io/analyses/etcd-3.4.3)
 [^horizontal]: E.g. sharding the key-value space with bucketing and serving reads from followers (both currently not used by Kubernetes)
 [^strings]: I never understood why the etcd maintainers decided to use strings, convenience perhaps? Also see this [issue](https://github.com/etcd-io/etcd/issues/1548).
-[^crud]: Create, Read, Update, Delete
 [^tx]: In general, we're targeting sub-second timespans here
 [^readerwriter]: Under [normal](https://github.com/boltdb/bolt/issues/392#issuecomment-111841687) operations
 [^bottleneck]: The [monitoring](https://etcd.io/docs/v3.4.0/op-guide/monitoring/) section provides guidance. Optionally enable tracing output as described in this [issue](https://github.com/etcd-io/etcd/issues/11884#issuecomment-628403891).
-[^mvcc]: See MVCC in [PostgreSQL](https://habr.com/en/company/postgrespro/blog/467437/)
+[^mvcc]: See MVCC in [PostgreSQL](https://habr.com/en/company/postgrespro/blog/467437/) or this CMU video [series](https://www.youtube.com/watch?v=1Od_SuOQshM&ab_channel=CMUDatabaseGroup)
 [^mvccinternal]: [How MVCC databases work internally](https://kousiknath.medium.com/how-mvcc-databases-work-internally-84a27a380283)
 [^leases]: https://etcd.io/docs/v3.3.12/dev-guide/interacting_v3/#grant-leases
 [^empty]: This is also true for an etcd cluster. All nodes initially start at RV:1. The Raft state machine guarantees that every change is applied atomically and in order across all members in the cluster, producing a globally consistent RV.
@@ -1279,6 +1280,4 @@ consistent](https://github.com/kubernetes/community/blob/master/contributors/des
 [^watchrev]: The default is `currentRev + 1`, i.e. submit changes from "now" on
 [^chancap]: The current channel buffer size is 128 items, see [issue#11906](https://github.com/etcd-io/etcd/issues/11906) for more detail
 [^atleastonce]: This would give us at-least-once processing semantics
-
-<!-- [Digging into etcd](https://elder.dev/posts/digging-into-etcd/) <- won't use this link bc marked as draft, where Ben wants to explore similar questions -->
 
