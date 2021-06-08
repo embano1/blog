@@ -7,8 +7,9 @@ description: "This post explains how to perform operations against the vCenter S
 
 tags: ["kubernetes","vcsim","vsphere"]
 
-featuredImage: ""
-featuredImagePreview: ""
+resources:
+- name: "featured-image"
+  src: "featured-image.jpg"
 
 toc:
   enable: true
@@ -231,6 +232,10 @@ Knative](https://github.com/vmware-tanzu/sources-for-knative) and [VMware Event
 Broker
 Appliance](https://github.com/vmware-samples/vcenter-event-broker-appliance) for
 some inspiration how we use `vcsim` with Kubernetes in Github Actions.
+
+### Credits 
+
+Photo by <a href="https://unsplash.com/@thisisengineering?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">ThisisEngineering RAEng</a> on <a href="https://unsplash.com/s/photos/simulator?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 [^job]: You could also send and resume the command to the background, but I am
 assuming you know how to perform this in your `$SHELL`, since you're asking 😉
