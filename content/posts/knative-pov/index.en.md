@@ -4,6 +4,7 @@ date: 2021-06-17T09:01:24+02:00
 lastmod: 2021-06-17T09:01:24+02:00
 draft: false
 description: "My point of view on Ahmet's recent blog post"
+upd: Fixed Lambda release year and improved wording.
 
 tags: ["knative","open source"]
 
@@ -74,7 +75,7 @@ failures from the outside. So always remember:
 ## A bit of History
 
 When Amazon Web Services (AWS) announced Lambda, a fully-managed ("serverless")
-compute service, back in 2015, my immediate reaction was that it could
+compute service, back in 2014, my immediate reaction was that it could
 completely revolutionize the industry. But by the time I had a different role
 and focus and it was not before 2017 that I took a closer look at Lambda. And
 then it clicked.
@@ -176,14 +177,14 @@ is not a technology, but a *spectrum and change in mindset*.
 ## There and back again
 
 After our little detour above to set up the scene, let me explain why we did not
-use Knative as part of the VEBA project in its early days in 2019. This also
-highlights the mistakes the Knative community did in the beginning from an
-end-user's, i.e. *my very personal*, perspective.
+use Knative as part of the VEBA project in 2019. I'll also point out the
+mistakes the Knative community did in the beginning from an end-user's, i.e. *my
+very personal*, perspective.
 
-In early 2019, Knative did not gain much traction in the wider community for
-various reasons. One being that the project was still young compared to the
-platform we eventually settled using in VEBA
-([OpenFaaS](https://www.openfaas.com/)).
+In early 2019, Knative had not gained much traction in the wider community for
+various reasons. Of course the project was still young, thus we decided using
+the more widely adapted ([OpenFaaS](https://www.openfaas.com/)) platform in
+VEBA.
 
 But this was certainly not the main reason (we kept an eye on the Knative
 project ever since then).
@@ -240,7 +241,7 @@ matter](https://knative.dev/):
 
 Well, you could argue what defines a "developer". But if I ask the primary VEBA
 persona, i.e. vSphere admins, architects and infrastructure operators, most of
-them would definitely not consider themselves "developers".
+them would definitely not consider themselves "developers"[^devs].
 
 An important lesson in life is: *Words matter*. The Knative team definitely did
 not have bad intentions by focusing on the "developer" persona. Not at all! I
@@ -248,8 +249,8 @@ guess they were just a bit blind on the potential this platform brings to
 infrastructure teams alike. At least the wording on the website did not reflect
 it.
 
-Contrast this with AWS. Werner Vogels (AWS CTO) punchline during a re:invent
-keynote (2017) to me it reads very inclusive to all personas.
+Contrast this with AWS. Werner Vogels, CTO at AWS, had a famous punchline during
+a re:invent keynote (2017), which to me reads very inclusive to all personas.
 
 {{< image src="image-03.png" caption="All the Code you ever write is business logic" >}}
 
@@ -266,8 +267,8 @@ function
 [templates](https://github.com/vmware-samples/vcenter-event-broker-appliance/tree/development/examples/knative/templates)
 and [SDKs](https://github.com/cloudevents/sdk-powershell) for the programming
 (scripting) language of their choice (PowerShell/PowerCLI). The adoption and
-feedback from a community which in 90% of the cases has never touched `git` or
-`Docker` before has been beyond our imagination.
+feedback from a community, which in 90% of the cases has never touched `git` or
+`Docker` before, has been beyond our imagination.
 
 Our key learning was to *hide, abstract and simplify the internals* of
 Kubernetes, Knative, et al. and get out of the way of the end-user as much as
@@ -275,8 +276,8 @@ possible.
 
 ## Outlook: Bullish 🐮
 
-Overall, I think Knative has a bright future. Here are some of the main reasons
-and signs why I think Knative will become the de facto API for software
+Overall, I think Knative has a bright future. Following are some of the main
+reasons and signs why I think Knative will become the de facto API for software
 development and deployment frameworks in the Kubernetes ecosystem. These also
 led us to finally bet on Knative in VEBA.
 
@@ -369,3 +370,8 @@ managed service with serverless characteristics.
 [^everywhere]: For many known and good reasons, e.g. you need to support
 multiple cloud environments as your go-to-market strategy, legal and compliance
 reasons, on-premises estate, etc.
+
+[^devs]: My colleague David pointed out that this wording actually addresses
+operators so they can deploy a platform with a better user experience for their
+developers. My point is though that operators should not only deliver Knative
+but also consume it for their daily work.
