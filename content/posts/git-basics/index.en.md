@@ -607,6 +607,15 @@ never been committed - but without losing the actual changes. They get simply
 marked as `unstaged` in your working directory again. Think of `reset` as the
 reverse action of `commit`.
 
+{{< admonition type=tip open=true >}}
+
+There might be other (temporary) changes in your branch which you did not want
+to include in a commit. To get rid of these changes use `git checkout .`. This
+will discard all remaining changes in your local git repository. `checkout` also
+accepts a path/file name if you want to be more specific in what gets discarded.
+
+{{< /admonition >}}
+
 The `reset` command also comes in handy if you want to rearrange what goes into
 a commit. Say you want `awesome_script.sh` not in the first but second commit.
 Simply (soft) reset your commits to a previous state (commit) as shown above and
@@ -627,13 +636,13 @@ during your first pull request...or in case you keep forgetting this stuff 😄
 The following sections are broken up into typical conversations you might
 experience during a PR review.
 
-### "You forgot to sign your commit(s)"
+### "You forgot to sign your Commit(s)"
 
 Often you will be greeted by a friendly 🤖 stating that you *forgot to sign* one
 or more commits. This could also happen after a rebase/squash (see below), where
 you did not sign the resulting commit.
 
-#### Scenario with only commit
+#### Scenario with one Commit
 
 **Problem:** Commit `96c6889` in branch `issue-31` has not been signed-off and
 is part of a PR in the `upstream` repository.
@@ -676,7 +685,7 @@ reasons](https://stackoverflow.com/a/52823955).
 
 {{< /admonition >}}
 
-#### Scenario with multiple commits
+#### Scenario with multiple Commits
 
 **Problem:** Multiple (or all) commits in a branch are not signed off.
 
@@ -893,12 +902,12 @@ git push fork HEAD:issue-31
 [output omitted]
 ```
 
-### "Please adjust your commit message"
+### "Please adjust your Commit Message"
 
 **Problem:** You might have forgotten to include some details, like a prefix or
 issue reference in one or more commit messages.
 
-#### Scenario with one commit
+#### Scenario with one Commit
 
 **Solution:** Amend your commit.
 
@@ -911,7 +920,7 @@ git push fork HEAD:issue-31 --force-with-lease
 [output omitted]
 ```
 
-#### Scenario with multiple commits
+#### Scenario with multiple Commits
 
 **Solution:** Perform an interactive rebase. Let's continue with our previous
 `issue-31` example branch which for this exercise contains two commits that need
