@@ -2,13 +2,13 @@
 title: "Onwards to the Core: etcd"
 subtitle: ""
 date: 2021-01-21T17:28:15+01:00
-lastmod: 2021-02-24T17:28:15+01:00
+lastmod: 2021-06-24T09:28:15+01:00
 draft: false
 author: ""
 description: "A journey to the core behind the Kubernetes ListerWatcher interface"
 page:
   theme: "classic"
-upd: Add lecture on MVCC, minor improvements for clarity
+upd: Add Youtube talk version of this blog post
 authorComment: ""
 tags: ["Kubernetes","Events","bolt","database","etcd","watch"]
 hiddenFromHomePage: false
@@ -42,6 +42,14 @@ Understanding `etcd` will be helpful for the upcoming posts when the Kubernetes
 data model and controllers comes into play. Advanced Kubernetes users might
 directly want to jump into the internals, though. I recommend starting  at [etcd
 Server](#the-etcd-server).
+
+{{< admonition type=tip >}}
+
+A condensed version of this blog post is available as a talk on Youtube: [A
+Journey in the Kubernetes ListerWatcher Rabbit
+Hole](https://www.youtube.com/watch?v=Z9fwIzy0C_8).
+
+{{< /admonition >}}
 
 ## Kubernetes in a Nutshell
 
