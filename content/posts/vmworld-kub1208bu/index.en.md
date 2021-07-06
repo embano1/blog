@@ -69,10 +69,8 @@ like [Ben Corrie](https://twitter.com/bensdoings) presenting deep dives on
 [Project Pacific](https://www.vmware.com/products/vsphere/projectpacific.html)
 in parallel.  
 
-You can watch the sessions for VMworld US/EU via the following links:
-
-- [KUB1208BU @VMworldEU](https://videos.vmworld.com/global/2019/videoplayer/29332)
-- [KUB1208BU @VMworldUS](https://videos.vmworld.com/global/2019/videoplayer/27552)
+You can watch the session recording
+[here](https://www.vmware.com/vmworld/en/video-library/video-landing.html?sessionid=15614127484680019FXJ&region=EU).
 
 {{< admonition type=note title="Note" open=true >}} 
 You might need to log in with your (free to register) VMware account until the
@@ -81,7 +79,6 @@ the PDF
 [here](https://cms.vmworldonline.com/event_data/12/session_notes/KUB1208BE.pdf)
 (no login required). 
 {{< /admonition >}}
-
 
 If you have any feedback on the session and material/concepts discussed, feel
 free to reach out to me on [Twitter](https://twitter.com/embano1). I'm not sure
