@@ -636,6 +636,118 @@ during your first pull request...or in case you keep forgetting this stuff 😄
 The following sections are broken up into typical conversations you might
 experience during a PR review.
 
+### "How do I commit during reviews?"
+
+Depending on the source code management (SCM) system you're using, e.g.
+[Github.com](https://github.com/), addressing review comments can quickly become
+an issue - at least for the reviewer. 
+
+Most contributors would make the change and then `force-push` to the pull
+request instead of adding and pushing review commit(s). This way of addressing
+review comments means more work for reviewers, especially on large pull (merge)
+requests.
+
+Depending on the SCM you use, commits from `force-pushes` might not be rendered
+nicely so that the reviewer often sees all instead of the incremental changes.
+
+{{< admonition type=tip open=true >}}
+
+In a Github pull request, you can click on the "\<user\> force-pushed ..." text
+in the bottom of the PR to see the actual changes. That (diff) link is not
+immediately obvious and falls short when a rebase was performed as well.
+
+{{< /admonition >}}
+
+Ideally the contributor creates additional commits during a review because many
+SCMs have support for incremental changes. Even if your SCM does not support
+such a functionality, the reviewer can easily inspect the individual commits if
+needed.
+
+Once the review is done, either all commits are automatically squashed and
+merged into one commit (depending on the SCM/repository setup) or one manually
+performs a `rebase` operation (see further below for ways to do this).
+
+Of course, in that case you would still need to eventually `force-push` your
+changes. So are we back to the beginning? 
+
+Well, yes and no. On Github the reviewer can inspect `force-push` changes and
+would then see an empty diff, signaling that nothing has changed since the last
+review commit[^diff] (see tip above). Furthermore, I expect the SCM vendors and
+platform providers to improve the user experience for this common scenario.
+
+#### Scenario with multiple Review Commits
+
+**Problem:** You are going through a lengthly review and want to easily merge
+your review commits eventually.
+
+```bash
+# current commit history
+git log main^..HEAD --oneline
+96c6889 (HEAD -> issue-31) fix: Fix bug in ABC
+3c86329 (upstream/main, upstream/HEAD, main) feat: add feature 10
+```
+
+**Solution:**
+
+During the review you are additional commits using the `--fixup` flag
+to easily squash them once the review is done.
+
+```bash
+# we had to make a change to the README
+git add README.md
+
+# simply commit, referencing the commit ID this one should be squashed into later
+git commit --fixup 96c6889
+[issue-31 05ff5a2] fixup! fix: Fix bug in ABC
+ 1 file changed, 1 insertion(+)
+
+# after another round we were asked to make a change in main.go
+git add main.go
+
+# keep fixup-ing
+git commit --fixup 96c6889
+[issue-31 b1936b6] fixup! fix: Fix bug in ABC
+ 1 file changed, 1 insertion(+)
+ create mode 100644 main.go
+```
+
+Here's our new history.
+
+```bash
+b1936b6 (HEAD -> issue-31) fixup! fix: Fix bug in ABC
+05ff5a2 fixup! fix: Fix bug in ABC
+96c6889 fix: Fix bug in ABC
+3c86329 (upstream/main, upstream/HEAD, main) feat: add feature 10
+```
+
+Notice how the `git` CLI automatically added the `fixup!` prefix to the review
+commits to indicate that these commits shall be squashed into the corresponding
+reference commit (`96c6889`).
+
+Once the review is done and you are asked to squash your commits `git` will do
+most of the work for you.
+
+```bash
+# perform an interactive rebase with the --autosquash option
+git rebase main -i --autosquash
+
+# the editor opens, marking the fixup commits for squashing
+1 pick 6fad9e1 fix: Fix bug in ABC
+2 fixup 05ff5a2 fixup! fix: Fix bug in ABC
+3 fixup b1936b6 fixup! fix: Fix bug in ABC
+
+# then save and leave the editor, e.g. :wq (vi)
+Successfully rebased and updated refs/heads/issue-31.
+
+git log main^..HEAD --oneline
+817078c (HEAD -> issue-31) fix: Fix bug in ABC
+3c86329 (upstream/main, upstream/HEAD, main) feat: add feature 10
+
+# push the final commit
+git push fork HEAD:issue-31 --force-with-lease
+[output omitted]
+```
+
 ### "You forgot to sign your Commit(s)"
 
 Often you will be greeted by a friendly 🤖 stating that you *forgot to sign* one
@@ -992,3 +1104,6 @@ href="https://unsplash.com/s/photos/git?utm_source=unsplash&utm_medium=referral&
 
 [^master]: Formerly the default branch was usually "master" but has been changed
 to reduce offensive language.
+
+[^diff]: Unless a rebase against the `main` trunk was involved which would show
+    all the commits from these operations.
