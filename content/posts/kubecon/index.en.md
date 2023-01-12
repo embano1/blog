@@ -22,8 +22,6 @@ lightgallery: true
 
 First of all, let me congratulate you to this outstanding achievement. Speaking at KubeCon, especially if it's your first time, is a tremendous honor and experience. Well done!
 
-<center>{{< tweet 1044345018490662912 >}}</center>
-
 When I was informed that my [KubeCon talk about Kubernetes Resource Management](https://www.youtube.com/watch?v=8-apJyr2gi0) was accepted for KubeCon EU in Denmark (2018), I really could not believe it. By then, the chances to get your talk accepted were around 10% (or less, don't really remember the exact number). There were over a 1,000 submissions just for that KubeCon (recall that we now have **three KubeCon events during the year** - US, EU and Asia region). The popularity of Kubernetes is ever increasing and so is the number of people trying to get a talk accepted. Once again, **outstanding achievement to get your talk in**!
 
 But now comes the tough part - research, write, practice, repeat, go on stage, perform :) Let me tell you that I went through several sleepless nights preparing for my first KubeCon talk. The day of the presentation, until I got on stage, was a mixture of every emotion I could have possibly gone through. Even though I had presented uncountable times before, including large industry conferences, KubeCon was very different. Different because it was the first time everything was recorded (including the presenter on stage) and I did not really know the audience, or more precisely: I was assuming everyone in the room is a Kubernetes expert and that my presentation not only had to be entertaining but also technically deep and 100% accurate. It's not seldom that maintainers and SIG (Special Interest Group) leads are in the room as well. 

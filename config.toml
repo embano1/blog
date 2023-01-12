@@ -2,9 +2,10 @@ Copyright = "All rights reserved - 2020"
 baseUrl = "https://www.mgasch.com"
 canonifyurls = true
 paginate = 10
-theme = "uBlogger"
+theme = "LoveIt"
 title = "mgasch.com"
 
+# ignoreErrors = ["error-remote-getjson"]
 # [en, zh-cn, fr, ...] determines default content language
 defaultContentLanguage = "en"
 # language code
@@ -584,7 +585,7 @@ startLevel = 2
 # 
 
 [author]
-name = "embano1.en"
+name = "embano1"
 
 # Sitemap config
 [sitemap]
