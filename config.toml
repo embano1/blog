@@ -72,6 +72,7 @@ fingerprint = ""
 dateFormat = "2006-01-02"
 # website images for Open Graph and Twitter Cards
 images = ["/images/gopher.jpg"]
+title = "mgasch.com"
 
 #  App icon config
 [params.app]
